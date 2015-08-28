@@ -1,31 +1,3 @@
-# def digisum num  #string
-# 	num.split('').inject(0){|result, n| result + n.to_i}
-# end
-
-# def order_weight(string)
-# 	nums = string.split(' '); result = []; swaps = 0
-# 	for i in 0...nums.length-1 
-# 		if digisum(nums[i]) > digisum(nums[i+1])
-# 			swaps += 1
-# 			nums[i], nums[i+1] = nums[i+1], nums[i] 
-# 		elsif digisum(nums[i]) == digisum(nums[i+1])
-# 			if nums[i] > nums[i+1]
-# 				swaps += 1
-# 				nums[i], nums[i+1] = nums[i+1], nums[i] 
-# 			end
-# 		else
-# 		end
-# 	end
-# 	nums = nums.join(' ')
-# 	if swaps == 0
-# 		return nums
-# 	else
-# 		return order_weight(nums)
-# 	end
-# end
-
-
-
 def digisum num  #string
 	num.split('').inject(0){|result, n| result + n.to_i}
 end
