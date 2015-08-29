@@ -101,6 +101,10 @@ def fib n
 	return f_k_2
 end
 
+p fib(999999).to_s.length  #=>  208988 #digits long  
+
+
+
 def perimeter(n)
 	(fib(n+3)-1)*4
 end
