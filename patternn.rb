@@ -26,4 +26,4 @@ def pattern(n)
 end
 
 
-puts pattern(3)
+puts pattern(4)
