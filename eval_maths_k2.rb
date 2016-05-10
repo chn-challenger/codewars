@@ -19,57 +19,6 @@ end
 #p basic_op('-21','-23','aasfd+')
 
 
-def eval_maths_no_brackets_v1 string
-	#string = string.delete(' ')
-	digits = ['0','1','2','3','4','5','6','7','8','9']
-	index = nil; a = ''; b =''; op =''
-	string_array = string.split('')
-	string_array.each.with_index do |c,i| 
-		if c == '*' || c == '/' 
-			index = i
-			op = c
-			
-			j = i - 1
-			while j >= 0
-				if digits.include?(string_array[j])
-					a += string_array[j]
-					j -= 1
-				else
-					j = -1 #breaks it if another operator is found
-				end	
-			end
-			a = a.reverse
-
-
-			b = string_array[i+1]
-			k = i + 2
-			while k < string.length
-				if digits.include?(string_array[k])
-					b += string_array[k]
-					k += 1
-				else
-					k = string.length
-				end
-			end
-
-			break		
-		end
-	end
-			p a
-			p op
-			p b
-
-	result = basic_op(a,b,op)
-	
-
-
-	#return result
-	#multiply_index = string.index('*'); divide_index = string.index('/')
-		
-end
-
-
-
 
 def eval_maths_no_brackets_v2 string
 	#string = string.delete(' ')
