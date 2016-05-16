@@ -1,0 +1,62 @@
+  def latex
+    return '' if steps.length == 0
+
+    copy = self.copy.flatten
+
+    new_latexed_exp = expression_factory.build([copy.steps.first])
+
+    new_latex = copy.steps.first.val.to_s #after flatten, first step has to be non-exp valued
+
+    for i in 1...copy.steps.length
+      if copy.steps[i].ops == :add
+        step_val = copy.steps[i].val
+        if step_val.is_a?(expression_class)
+          step_latx = step_val.new_new_latex
+          step_latx = _new_latex_brackets(step_latx) if step_val._add_step_need_bracket?
+          new_latex += '+' + step_latx
+        else
+          new_latex += '+' + step_val.to_s
+        end
+      end
+
+      if copy.steps[i].ops == :sbt
+        step_val = copy.steps[i].val
+        if step_val.is_a?(expression_class)
+          step_latx = step_val.new_new_latex
+          step_latx = _new_latex_brackets(step_latx) if step_val._sbt_step_need_bracket?
+          new_latex += '-' + step_latx
+        else
+          new_latex += '-' + step_val.to_s
+        end
+      end
+
+      if copy.steps[i].ops == :mtp
+        step_val = copy.steps[i].val
+        if step_val.is_a?(expression_class)
+          new_latex = _new_latex_brackets(new_latex) if new_latexed_exp._step_mtp_need_bracket?
+          step_latx = step_val.new_new_latex
+          step_latx = _new_latex_brackets(step_latx) if step_val._mtp_step_need_bracket?
+          new_latex += step_latx
+        else
+          new_latex = _new_latex_brackets(new_latex) if new_latexed_exp._step_mtp_need_bracket?
+          new_latex += step_val.to_s
+        end
+      end
+
+      if copy.steps[i].ops == :div
+        step_val = copy.steps[i].val
+        if step_val.is_a?(expression_class)
+          step_latx = step_val.new_new_latex
+          new_latex = '\frac{' + new_latex + '}{' + step_latx + '}'
+        else
+          new_latex = '\frac{' + new_latex + '}{' + step_val.to_s + '}'
+        end
+      end
+
+      new_latexed_exp.steps << copy.steps[i]
+
+    end
+
+    return new_latex
+
+  end
