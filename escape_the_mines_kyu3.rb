@@ -88,3 +88,5 @@ p solve(large_mine_map, miner_2, exit_2)
 # 2.  make a walk_bot, which when given a starting position, path, destination, will
 #     attempt to walk the path given, returns true if it gets to the destination
 #     unscathed, return false in all other cases.
+
+# Same challenge but with loops allowed??
