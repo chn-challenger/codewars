@@ -9,3 +9,6 @@ function countZeros(n) {
   }
   return zero;
 }
+
+//1 to 999   189
+//1000 to 1999   400
